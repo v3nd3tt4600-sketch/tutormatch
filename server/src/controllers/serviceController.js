@@ -1,4 +1,5 @@
 import Service from '../models/Service.js';
+import Booking from '../models/Booking.js';
 import { HttpError } from '../utils/httpError.js';
 
 const ALLOWED_FIELDS = [
@@ -81,6 +82,14 @@ export const deleteService = async (req, res) => {
   const service = await Service.findById(req.params.id);
   if (!service) {
     throw new HttpError(404, 'Service not found');
+  }
+
+  const hasBookings = await Booking.exists({ service: service._id });
+  if (hasBookings) {
+    throw new HttpError(
+      400,
+      'This service has bookings and cannot be deleted. Deactivate it instead.',
+    );
   }
 
   await service.deleteOne();
