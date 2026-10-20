@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import AdminRoute from './components/common/AdminRoute';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import ServiceDetails from './pages/ServiceDetails';
@@ -18,11 +20,18 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="services" element={<Services />} />
         <Route path="services/:id" element={<ServiceDetails />} />
-        <Route path="advisor" element={<Advisor />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="admin/services" element={<AdminServices />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="advisor" element={<Advisor />} />
+        </Route>
+
+        <Route element={<AdminRoute />}>
+          <Route path="admin/services" element={<AdminServices />} />
+        </Route>
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
