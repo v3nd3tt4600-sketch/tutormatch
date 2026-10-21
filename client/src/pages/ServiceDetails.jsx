@@ -8,6 +8,7 @@ import usePageTitle from '../hooks/usePageTitle';
 import SubjectIcon from '../components/services/SubjectIcon';
 import Spinner from '../components/common/Spinner';
 import ErrorMessage from '../components/common/ErrorMessage';
+import BookingForm from '../components/bookings/BookingForm';
 import { formatPrice, formatDuration } from '../utils/format';
 import './ServiceDetails.css';
 
@@ -109,7 +110,7 @@ export default function ServiceDetails() {
           <p className="text-muted">per {formatDuration(service.durationMinutes)} session</p>
 
           {isLoggedIn ? (
-            <p className="text-muted">The booking form is coming in the next part.</p>
+            <BookingForm service={service} />
           ) : (
             <>
               <Link to="/login" state={{ from: location.pathname }} className="btn btn-primary btn-block">

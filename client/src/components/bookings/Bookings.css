@@ -1,0 +1,159 @@
+.slot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 0.5rem;
+}
+
+.slot {
+  padding: 0.55rem 0.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.slot:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.slot.selected {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.slot:disabled {
+  background: var(--color-bg);
+  color: #cbd5e1;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.slot-hint {
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.booking-form {
+  margin-top: 1.25rem;
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.notes-counter {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+.booking-confirmed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.booking-confirmed svg {
+  color: var(--color-success);
+}
+
+.booking-confirmed h3 {
+  margin: 0;
+}
+
+.booking-confirmed p {
+  margin: 0 0 0.5rem;
+  color: var(--color-text-muted);
+}
+
+.booking-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+.booking-card.is-cancelled {
+  opacity: 0.7;
+}
+
+.booking-card-main {
+  display: flex;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.booking-card-info {
+  min-width: 0;
+}
+
+.booking-card-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.booking-card-title h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.booking-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.booking-card-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.booking-card-notes {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.booking-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .booking-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .booking-card-actions .btn {
+    flex: 1;
+  }
+}
