@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { X } from 'lucide-react';
 import './Modal.css';
 
-export default function Modal({ title, onClose, children }) {
+export default function Modal({ title, onClose, children, wide = false }) {
   useEffect(() => {
     const handleKey = (event) => {
       if (event.key === 'Escape') onClose();
@@ -24,7 +24,7 @@ export default function Modal({ title, onClose, children }) {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className="modal card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div className={`modal card ${wide ? 'modal-wide' : ''}`} role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div className="modal-header">
           <h2 id="modal-title">{title}</h2>
           <button type="button" className="modal-close" onClick={onClose} aria-label="Close">

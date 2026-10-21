@@ -17,6 +17,10 @@
   box-shadow: var(--shadow-md);
 }
 
+.modal-wide {
+  max-width: 680px;
+}
+
 .modal-header {
   display: flex;
   justify-content: space-between;
