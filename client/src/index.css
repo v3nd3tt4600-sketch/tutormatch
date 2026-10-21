@@ -280,6 +280,16 @@ button, input, select, textarea {
   color: var(--color-text-muted);
 }
 
+.pill-success {
+  background: var(--color-success-light);
+  color: var(--color-success);
+}
+
+.pill-danger {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
 .subject-icon {
   display: inline-flex;
   align-items: center;
