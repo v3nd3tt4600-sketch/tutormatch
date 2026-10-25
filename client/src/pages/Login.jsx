@@ -4,11 +4,14 @@ import useAuth from '../hooks/useAuth';
 import { getErrorMessage } from '../api/client';
 import ErrorMessage from '../components/common/ErrorMessage';
 import getHomePath from '../utils/getHomePath';
+import usePageTitle from '../hooks/usePageTitle';
 import './AuthPages.css';
 
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 
 export default function Login() {
+  usePageTitle('Log in');
+
   const { user, login } = useAuth();
   const location = useLocation();
   const from = location.state?.from;

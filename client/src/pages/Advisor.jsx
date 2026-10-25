@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Sparkles, Lightbulb, SearchX, RotateCcw } from 'lucide-react';
 import { getRecommendations } from '../api/aiApi';
@@ -9,25 +9,23 @@ import RecommendationCard from '../components/ai/RecommendationCard';
 import Spinner from '../components/common/Spinner';
 import './Advisor.css';
 
+const MIN_LENGTH = 10;
+
 export default function Advisor() {
   usePageTitle('AI Study Advisor');
 
-  const [searchParams] = useSearchParams();
-  const [problem, setProblem] = useState(searchParams.get('q') || '');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initialQuestion = searchParams.get('q') || '';
+  const [problem, setProblem] = useState(initialQuestion);
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const autoRunDone = useRef(false);
 
-  const handleChange = (value) => {
-    setProblem(value);
-    setError('');
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const runAdvisor = useCallback(async (text) => {
     setError('');
 
-    if (problem.trim().length < 10) {
+    if (text.trim().length < MIN_LENGTH) {
       setError('Tell the advisor a bit more: what subject, what is hard, and your level.');
       return;
     }
@@ -35,13 +33,35 @@ export default function Advisor() {
     setLoading(true);
     setResult(null);
     try {
-      const data = await getRecommendations(problem.trim());
+      const data = await getRecommendations(text.trim());
       setResult(data);
     } catch (requestError) {
       setError(getErrorMessage(requestError));
     } finally {
       setLoading(false);
     }
+  }, []);
+
+  useEffect(() => {
+    if (autoRunDone.current) return;
+    autoRunDone.current = true;
+
+    if (initialQuestion.trim().length >= MIN_LENGTH) {
+      Promise.resolve().then(() => runAdvisor(initialQuestion));
+    }
+    if (initialQuestion) {
+      setSearchParams({}, { replace: true });
+    }
+  }, [initialQuestion, runAdvisor, setSearchParams]);
+
+  const handleChange = (value) => {
+    setProblem(value);
+    setError('');
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    runAdvisor(problem);
   };
 
   const startOver = () => {
