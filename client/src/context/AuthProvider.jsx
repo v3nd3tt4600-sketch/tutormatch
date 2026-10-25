@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react';
 import { AuthContext } from './authContext';
-import { TOKEN_KEY } from '../api/client';
+import { TOKEN_KEY, setUnauthorizedHandler } from '../api/client';
 import { loginUser, registerUser, getCurrentUser } from '../api/authApi';
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(() => Boolean(localStorage.getItem(TOKEN_KEY)));
+
+  // Let the axios interceptor log us out when the backend rejects our token
+  useEffect(() => {
+    setUnauthorizedHandler(() => {
+      localStorage.removeItem(TOKEN_KEY);
+      setUser(null);
+    });
+    return () => setUnauthorizedHandler(null);
+  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);

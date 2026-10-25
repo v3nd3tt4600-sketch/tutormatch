@@ -16,6 +16,25 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
+let unauthorizedHandler = null;
+export const setUnauthorizedHandler = (handler) => {
+  unauthorizedHandler = handler;
+};
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error.response?.status;
+    const url = error.config?.url || '';
+    const isAuthAttempt = url.includes('/auth/login') || url.includes('/auth/register');
+
+    if (status === 401 && !isAuthAttempt && localStorage.getItem(TOKEN_KEY) && unauthorizedHandler) {
+      unauthorizedHandler();
+    }
+    return Promise.reject(error);
+  },
+);
+
 // Turns any axios error into a message we can show the user.
 // Our backend always sends errors as { message: '...' }.
 export const getErrorMessage = (error) =>
