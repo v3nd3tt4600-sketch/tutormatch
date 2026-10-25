@@ -197,9 +197,14 @@ button, input, select, textarea {
 }
 
 .input:focus {
-  outline: none;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-primary-light);
+  box-shadow: 0 0 0 4px var(--color-primary-light);
+}
+
+.input.has-error:focus {
+  outline-color: var(--color-danger);
 }
 
 .input.has-error {
