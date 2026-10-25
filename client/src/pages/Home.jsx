@@ -1,8 +1,21 @@
+import usePageTitle from '../hooks/usePageTitle';
+import Hero from '../components/home/Hero';
+import SubjectGrid from '../components/home/SubjectGrid';
+import HowItWorks from '../components/home/HowItWorks';
+import FeaturedServices from '../components/home/FeaturedServices';
+import CallToAction from '../components/home/CallToAction';
+import './Home.css';
+
 export default function Home() {
+  usePageTitle(null);
+
   return (
-    <div className="page container">
-      <h1 className="page-title">Find the right tutor, fast</h1>
-      <p className="page-subtitle">The home page is coming in a later step.</p>
+    <div className="home">
+      <Hero />
+      <SubjectGrid />
+      <HowItWorks />
+      <FeaturedServices />
+      <CallToAction />
     </div>
   );
 }

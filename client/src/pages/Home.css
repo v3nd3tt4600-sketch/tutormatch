@@ -1,0 +1,256 @@
+.home {
+  padding-bottom: 4rem;
+}
+
+.hero {
+  padding: 4rem 0 3rem;
+  background: linear-gradient(180deg, var(--color-primary-light) 0%, var(--color-bg) 100%);
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  background: var(--color-surface);
+}
+
+.hero h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero-highlight {
+  color: var(--color-primary);
+}
+
+.hero-subtitle {
+  max-width: 34rem;
+  margin-bottom: 1.75rem;
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hero-points svg {
+  color: var(--color-success);
+}
+
+.advisor-teaser {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.advisor-teaser-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.advisor-teaser-header h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.15rem;
+}
+
+.advisor-teaser-header p {
+  margin: 0;
+}
+
+.teaser-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.advisor-teaser-note {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.home-section {
+  padding-top: 3.5rem;
+}
+
+.section-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  margin: 0;
+}
+
+.section-header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 600;
+}
+
+.subject-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.subject-tile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.subject-tile:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.subject-tile h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.subject-tile p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.step-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.step-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+.step-card h3 {
+  font-size: 1.1rem;
+}
+
+.step-card p {
+  margin: 0;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.cta-band {
+  padding: 2.5rem 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  color: #fff;
+  text-align: center;
+}
+
+.cta-band h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.cta-band p {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.cta-button {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.cta-button:hover {
+  background: var(--color-primary-light);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
