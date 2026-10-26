@@ -15,7 +15,12 @@ app.set('trust proxy', 1);
 
 // Middleware
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_URL || 'http://localhost:5173' }));
+// CLIENT_URL can list several frontend addresses, separated by commas
+const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+  .split(',')
+  .map((url) => url.trim().replace(/\/$/, '')); // "https://x.app/" → "https://x.app"
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 // Health check route, used to test that the API and database are running
