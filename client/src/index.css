@@ -262,6 +262,12 @@ button, input, select, textarea {
   animation: spin 1s linear infinite;
 }
 
+.spinner-slow {
+  max-width: 22rem;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
